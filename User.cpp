@@ -36,10 +36,15 @@ class User{
       }
       infile.close();
    }
-   bool CheckPassKey(string key){
-
+   string getNewKey(){
+      string key;
+      key = "verg5k4we";
+      return key;
    }
-   float getWinRate(){ 
-      return wins.length() / (wins.length() + losses.length());
+   bool CheckPassKey(string key){
+      return key == passkey;
+   }
+   float getWinRate(){
+      return (wins.length() / (wins.length() + losses.length())) * 100;
    }
 };
