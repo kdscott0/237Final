@@ -4,6 +4,10 @@
 #include "User.cpp"
 using namespace std;
 void ShowMainMenu();
+inline bool file_exists(const string& name) {
+    ifstream f(name.c_str());
+    return f.good();
+}
 void ShowUserMenu(string name){
    User curr(name);
    int op;
@@ -21,16 +25,16 @@ void ShowUserMenu(string name){
          } else {
             result = curr.CheckPassKey(attempt);
             if(result){
-               cout << "Heyyy Good Job ";
+               cout << "Hey Good Job ";
             } else {
                cout << "Sorry maybe next time ";
             } 
-            cout << "heres your new passkey\n" << curr.getNewKey() << endl;
+            cout << "heres your new passkey\n" << curr.getNewKey(result) << endl;
          }
          break;
       case 2:
          cout << "Hello " << curr.name << ",\n";
-         cout << "You've got a guess success rate of " << curr.getWinRate() << "%\n";
+         cout << "\tYou've got a guess success rate of " << curr.getWinRate() << "%\n";
          if (curr.getWinRate() > 50){
             cout << "Keep Up the Good Work\n";
          } else {
@@ -61,7 +65,7 @@ void ShowMainMenu(){
       while (name != "exit"){
          cout << "Enter the name of User or type 'exit' to return to main menu\n";
          cin >> name;
-         if (true) {//fexist(name + ".txt"){
+         if (file_exists(name + ".txt")){
             ShowUserMenu(name);
          } else {
             cout << "No User by that name exists try again\n";
@@ -85,10 +89,6 @@ void ShowMainMenu(){
 }
 
 int main() { 
-   User a("Nile");
-   User b("John");
-   User c("Osa");
-   cout << "The User has a " << a.getWinRate()<< " WinRate\n";
    ShowMainMenu();
    return 0; 
 }
