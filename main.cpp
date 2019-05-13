@@ -4,7 +4,7 @@
 #include "User.cpp"
 using namespace std;
 void ShowMainMenu();
-inline bool file_exists(const string& name) {
+bool file_exists(string& name) {
     ifstream f(name.c_str());
     return f.good();
 }
